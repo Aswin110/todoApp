@@ -49,9 +49,10 @@
     data(){
       return{
         task: '',
+        editedTask:null,
         tasks:[
           {
-            name: 'watch Kayal',
+            name: 'New task',
             status: 'to-do'
           },
           {
@@ -63,12 +64,17 @@
     },
     methods :{
       submitTask(){
-       if(this.task.length === 0)return;
+        if(this.task.length === 0)return;
+        if(this.editedTask===null){
+          this.tasks.push({
+              name: this.task,
+              status: 'to-do'
+          });
+        }else{
+          this.tasks[this.editedTask].name=this.task;//this task value will be saved in the respective tasks name
+          this.editedTask=null;
+        }
 
-       this.tasks.push({
-          name: this.task,
-          status: 'to-do'
-       });
        this.task='' //to clear the search box after pressing submit
         console.log(this.task)
       },
@@ -76,7 +82,8 @@
         this.tasks.splice(index,1)
       },
       editTask(index){
-      this.task=this.tasks[index].name;
+      this.task=this.tasks[index].name; //this shows the selected field in input bar
+      this.editedTask=index;
       }
     }
   };

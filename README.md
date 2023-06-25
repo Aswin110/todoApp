@@ -34,19 +34,37 @@ https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbkF
 
 that return an object(tasks)
 
+
+
 ### v-for loop for tasks and status
 
 to fetch one by one data from object(tasks)
+
+
 
 ### to add click event 
 
 when we press the button submitTask() should add new task
 
+
+
 ### submitTask()
 
 push new task to tasks
 
+
+
 ## delete task
+
+splice the task when clicked
+
+
+## edit task 
+
+we select the task to input bar 
+make the changes 
+save to the same tasks index 
+
 
 
 
