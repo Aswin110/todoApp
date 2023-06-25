@@ -65,6 +65,10 @@ we select the task to input bar
 make the changes 
 save to the same tasks index 
 
+## to change statu
 
+to change status on clicking on it 
+create an array with available statuses 
+on clicking the status it should loop through the available statues
 
 

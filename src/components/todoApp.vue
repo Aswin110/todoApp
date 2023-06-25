@@ -12,15 +12,21 @@
       <thead>
         <tr>
           <th scope="col">task</th>
-          <th scope="col">status</th>
+          <th scope="col" class="text-center">status</th>
           <th scope="col" class="text-center">#</th>
           <th scope="col" class="text-center">#</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(task, index) in tasks" :key="index">
-          <td>{{ task.name }}</td>
-          <td>{{ task.status }}</td>
+        <tr v-for="(task, index) in tasks" :key="index" >
+          <td>
+            <span>{{ task.name }}</span>
+          </td>
+          <td class="text-center" style="width: 120px;">
+            <span @click="changeStatus(index)" class="pointer">
+              {{ task.status }}
+            </span>
+          </td>
           <td>
             <div class="text-center" @click="editTask(index)">
               <span class="fa fa-pen"></span>
@@ -50,14 +56,15 @@
       return{
         task: '',
         editedTask:null,
+        availableStatuses:['To-do','In-progress','Finished'],
         tasks:[
           {
             name: 'New task',
-            status: 'to-do'
+            status: 'To-do'
           },
           {
             name: 'workout for 30min'
-            ,status:'done'
+            ,status:'Finished'
           }
         ]
       }
@@ -84,12 +91,19 @@
       editTask(index){
       this.task=this.tasks[index].name; //this shows the selected field in input bar
       this.editedTask=index;
-      }
+      },
+      changeStatus(index){
+        let newIndex =this.availableStatuses.indexOf(this.tasks[index].status);
+        if(++newIndex>2)newIndex=0;
+        this.tasks[index].status=this.availableStatuses[newIndex];
+      },
     }
   };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.pointer{
+  cursor: pointer;
+}
 </style>
