@@ -3,8 +3,8 @@
     <h2 class="text-center mt-5">My Vue Todo App</h2> 
     <!--input-->
     <div class="d-flex">
-      <input type="text" placeholder="enter task " class="form-control">
-      <button class="btn btn-warning rounded-0">SUBMIT</button>
+      <input v-model="task" type="text" placeholder="enter task " class="form-control">
+      <button @click="submitTask" class="btn btn-warning rounded-0">SUBMIT</button>
     </div>
 
     <!--task table-->
@@ -13,16 +13,24 @@
         <tr>
           <th scope="col">task</th>
           <th scope="col">status</th>
-          <th scope="col" class="text-centre">#</th>
-          <th scope="col" class="text-centre">#</th>
+          <th scope="col" class="text-center">#</th>
+          <th scope="col" class="text-center">#</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>watch kayal</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+        <tr v-for="(task, index) in tasks" :key="index">
+          <td>{{ task.name }}</td>
+          <td>{{ task.status }}</td>
+          <td>
+            <div class="text-center" @click="editTask(index)">
+              <span class="fa fa-pen"></span>
+            </div>
+          </td>
+          <td>
+            <div class="text-center" @click="deleteTask(index)">
+              <span class="fa fa-trash"></span>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -35,8 +43,43 @@
   name: 'HelloWorld',
     props: {
       msg: String
+    },
+
+
+    data(){
+      return{
+        task: '',
+        tasks:[
+          {
+            name: 'watch Kayal',
+            status: 'to-do'
+          },
+          {
+            name: 'workout for 30min'
+            ,status:'done'
+          }
+        ]
+      }
+    },
+    methods :{
+      submitTask(){
+       if(this.task.length === 0)return;
+
+       this.tasks.push({
+          name: this.task,
+          status: 'to-do'
+       });
+       this.task='' //to clear the search box after pressing submit
+        console.log(this.task)
+      },
+      deleteTask(index){
+        this.tasks.splice(index,1)
+      },
+      editTask(index){
+      this.task=this.tasks[index].name;
+      }
     }
-  }
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
