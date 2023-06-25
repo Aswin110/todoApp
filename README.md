@@ -65,10 +65,18 @@ we select the task to input bar
 make the changes 
 save to the same tasks index 
 
-## to change statu
+## to change status
 
 to change status on clicking on it 
 create an array with available statuses 
 on clicking the status it should loop through the available statues
+
+## when the status changes give them color and for completed task strike the task
+
+for Finished status give text-decoration: line through and color green text-success(green)
+
+for In-progress status color yellow text-warning(yellow)
+
+for to-do status color red text-danger(red)
 
 
